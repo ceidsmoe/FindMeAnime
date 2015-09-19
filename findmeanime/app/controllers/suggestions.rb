@@ -1,9 +1,13 @@
+#THIS IS A SET OF FUNCTIONS RELATED TO THE
+
+
+
+
 #gets a list of suggestions for a certain user
 def get_suggestions(user)
   shows = weed_irrelevant(ALL_SHOWS, user.my_shows);
   shows = weed_seen(shows, user.my_shows);
   shows = make_twod(shows)
-  user.reset_my_scores!;
   i=0;
   while(user.my_shows[i])
     j=0;
@@ -13,9 +17,9 @@ def get_suggestions(user)
       numneutral = certain_opinion(user.my_shows[i], shows[j,0], user.opinion(user.my_shows[j]), 0).length;
       total = numliked + numhated + numneutral;
       shows[j,1] = shows[j,1] + numliked/total - numhated/total;
-      j++
+      j = j + 1;
     end
-    i++
+    i = i + 1;
   end
   sorted_list = sort_by_score(shows);
   return sorted_list;
