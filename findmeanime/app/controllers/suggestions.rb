@@ -2,13 +2,12 @@
 
 #returns a tuple with the first row being show objects and the second show being suggestion scores
 def get_suggestions(user)
-  all_shows = Anime.all
-  
 #first, create a formatted list of shows to look through
-  shows = weed_irrelevant(all_shows, user.watched_animes);
+  shows = weed_irrelevant(Anime.all, user.watched_animes);
   shows = weed_seen(shows, user.watched_animes);
-  if(shows.empty?)
-    return sort_shows_by_rank(ALL_SHOWS);
+  if(shows.empty? or user.watched_animes.empty?)
+    return Anime.all
+    #return sort_shows_by_rank(Anime.all);
   end
   
   shows = make_twod(shows)
@@ -66,9 +65,9 @@ end
 
 #removes shows from all_shows that are in my_shows in order to not suggest already watched programs.  note that my_shows is a list of watched_animes
 def weed_seen(all_shows, my_shows)
-  i = 0;
-  k = 0;
-  shows[0] = 0; #scope
+  i = 0
+  k = 0
+  shows = [0] #scope
   while(all_shows[i])
     if(not includes_show?(all_shows[i], my_shows))
       shows[k] = all_shows[i];
@@ -82,9 +81,9 @@ end
 
 #returns a list of shows after removing all shows from all_shows that do not have any users who have also watched something from my_shows
 def weed_irrelevant(all_shows, my_shows)
-  i = 0;
-  k = 0;
-  shows[0] = 0; #scope
+  i = 0
+  k = 0
+  shows = [0] #scope
   while(all_shows[i])
     j = 0;
     while(my_shows[j])
@@ -115,7 +114,7 @@ end
 #creates a two dimensional array (the second dimension is default 0) for the shows
 def make_twod(my_shows)
   i = 0;
-  shows[0,0] = 0 #scope
+  shows = [[0]] #scope
   while(my_shows[i])
     shows[i,0] = my_shows[i];
     shows[i,1] = 0;
