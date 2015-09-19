@@ -8,6 +8,10 @@ def get_suggestions(user)
 #first, create a formatted list of shows to look through
   shows = weed_irrelevant(ALL_SHOWS, user.watched_animes);
   shows = weed_seen(shows, user.watched_animes);
+  if(shows.empty?)
+    return sort_shows_by_rank(ALL_SHOWS);
+  end
+  
   shows = make_twod(shows)
   #next, we assign a score to each show.  This is done by iterating through the list of seen shows, and for each show in possible suggestions, subtracting the percentage of users who disliked a suggested show from those who liked it.  Then, we add up these numbers for each show the given user has seen, generating a rating for each show.
   i=0;
@@ -45,6 +49,21 @@ def includes_show?(show, watched_animes)
   return false;
 end
 
+def sort_shows_by_rank(shows)
+  result_shows = shows;
+  i = 1;
+  while(result_shows[i])
+    temp = result_shows[i];
+    j = i;
+    while(j > 0 and result_shows[j-1] > temp)
+      result_shows[j] = result_shows[j-1];
+      j = j - 1;
+    end
+    result_shows[j] = temp;
+    i = i + 1;
+  end
+  return result_shows;
+end
 
 #removes shows from all_shows that are in my_shows in order to not suggest already watched programs.  note that my_shows is a list of watched_animes
 def weed_seen(all_shows, my_shows)
