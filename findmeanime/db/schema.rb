@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919042018) do
+ActiveRecord::Schema.define(version: 20150919164228) do
+
+  create_table "animes", force: :cascade do |t|
+    t.string   "title"
+    t.text     "synopsis"
+    t.integer  "episodes"
+    t.float    "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "o_auth2_credentials", force: :cascade do |t|
     t.string   "name"
@@ -28,5 +37,16 @@ ActiveRecord::Schema.define(version: 20150919042018) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "watched_animes", force: :cascade do |t|
+    t.integer  "rank"
+    t.integer  "user_id"
+    t.integer  "anime_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "watched_animes", ["anime_id"], name: "index_watched_animes_on_anime_id"
+  add_index "watched_animes", ["user_id"], name: "index_watched_animes_on_user_id"
 
 end
