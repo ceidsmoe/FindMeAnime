@@ -102,7 +102,11 @@ def certain_opinion(show1, show2, score1, score2)
   k = 0;
   while(ALL_USERS[i])
     user = ALL_USERS[i]
-    if(
-    
-    
+    if(user.include?(show1) and user.include?(show2) and user.opinion(show1)==score1 and user.opinion(show2)==score2)
+      result_users[k] = user;
+      k = k+1;
+    end
     i = i + 1;
+  end
+  return result_users;
+end
