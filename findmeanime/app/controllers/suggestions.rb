@@ -1,5 +1,7 @@
 #THIS IS A SET OF FUNCTIONS RELATED TO THE LOGIC OF THE PROGRAM, NOTABLY THE SUGGESTIONS ENGINE.  There are written as helper functions for get_suggestions, however, some probably have greater scope than that
 
+ALL_SHOWS = Anime.all
+ALL_USERS = User.all
 
 #returns a tuple with the first row being show objects and the second show being suggestion scores
 def get_suggestions(user)

@@ -1,4 +1,4 @@
-#require_relative 'suggestions.rb'
+require_relative 'suggestions.rb'
 
 class HomeController < ApplicationController
   def index
@@ -7,7 +7,7 @@ class HomeController < ApplicationController
         client = Google::APIClient.new
         client.authorization = auth
 
-        @userid = current_user.uid
+        my_suggestions = get_suggestions(current_user)
     end
   end
 end
