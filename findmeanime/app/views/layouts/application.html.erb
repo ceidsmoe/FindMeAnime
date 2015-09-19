@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<% if logged_in? %>
+    <h1>Logged in</h1>
+    <p><%= link_to 'Sign out', signout_path %></p>
+<% else %>
+    <%= link_to 'Sign in', '/signet/google/auth' %>
+<% end %>
+
 <%= yield %>
 
 </body>

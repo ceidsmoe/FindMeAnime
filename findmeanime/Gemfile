@@ -45,3 +45,6 @@ group :development do
   gem 'spring'
 end
 
+gem 'signet'
+gem 'google-api-client', :require => 'google/api_client'
+gem 'signet-rails', '>= 0.0.6'
