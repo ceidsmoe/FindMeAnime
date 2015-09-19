@@ -1,12 +1,11 @@
 #THIS IS A SET OF FUNCTIONS RELATED TO THE LOGIC OF THE PROGRAM, NOTABLY THE SUGGESTIONS ENGINE.  There are written as helper functions for get_suggestions, however, some probably have greater scope than that
 
-ALL_SHOWS = Anime.all
-ALL_USERS = User.all
-
 #returns a tuple with the first row being show objects and the second show being suggestion scores
 def get_suggestions(user)
+  all_shows = Anime.all
+  
 #first, create a formatted list of shows to look through
-  shows = weed_irrelevant(ALL_SHOWS, user.watched_animes);
+  shows = weed_irrelevant(all_shows, user.watched_animes);
   shows = weed_seen(shows, user.watched_animes);
   shows = make_twod(shows)
   #next, we assign a score to each show.  This is done by iterating through the list of seen shows, and for each show in possible suggestions, subtracting the percentage of users who disliked a suggested show from those who liked it.  Then, we add up these numbers for each show the given user has seen, generating a rating for each show.
@@ -83,10 +82,11 @@ end
 
 #returns the first user who has seen both shows.  Otherwise returns nil
 def shared_user(show1, show2)
+  all_users = User.all
   i = 0
-  while(ALL_USERS[i])
-    if(includes_show?(show1, ALL_USERS[i].watched_animes) and includes_show?(show2, ALL_USERS[i].watched_animes))
-      return ALL_USERS[i]
+  while(all_users[i])
+    if(includes_show?(show1, all_users[i].watched_animes) and includes_show?(show2, all_users[i].watched_animes))
+      return all_users[i]
     end
     i = i + 1;
   end
@@ -129,12 +129,13 @@ end
 
 #returns a list of users of who felt a certain way about a show
 def certain_opinion(show1, show2, score1, score2)
+  all_users = User.all
   i = 0;
   k = 0;
   result_users[0] = 0;#scope
-  while(ALL_USERS[i])
+  while(all_users[i])
     j = 0;
-    user = ALL_USERS[i]
+    user = all_users[i]
     while(user.watched_animes[j])
       animes = user.watched_animes;
       if(animes.includes_show?(show1) and animes.includes_show?(show2) and animes[j].rank==score1 and animes[j].rank==score2)
