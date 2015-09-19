@@ -53,7 +53,7 @@ def sort_shows_by_rank(shows)
   while(result_shows[i])
     temp = result_shows[i];
     j = i;
-    while(j > 0 and result_shows[j-1] > temp)
+    while(j > 0 and calculate_avg_score(result_shows[j-1]) > calculate_avg_score(temp))
       result_shows[j] = result_shows[j-1];
       j = j - 1;
     end
@@ -61,6 +61,25 @@ def sort_shows_by_rank(shows)
     i = i + 1;
   end
   return result_shows;
+end
+
+#calculate average opinion for a show
+def calculate_avg_score(show)
+  i = 0;
+  k = 0.0;
+  sum = 0.0;
+  while(User.all[i])
+    j = 0;
+    while(User.all[i].watched_animes[j])
+      if(User.all[i].watched_animes[j] == show)
+        k = k + 1
+        sum = sum + User.all[i].watched_animes[j].rank
+      end
+      j = j + 1
+    end
+    i = i + 1
+  end
+  return sum/k
 end
 
 #removes shows from all_shows that are in my_shows in order to not suggest already watched programs.  note that my_shows is a list of watched_animes
@@ -83,7 +102,7 @@ end
 def weed_irrelevant(all_shows, my_shows)
   i = 0
   k = 0
-  shows = [0] #scope
+  shows = [ ] #scope
   while(all_shows[i])
     j = 0;
     while(my_shows[j])
