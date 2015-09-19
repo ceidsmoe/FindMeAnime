@@ -1,2 +1,0 @@
-class AnimeController < ApplicationController
-end

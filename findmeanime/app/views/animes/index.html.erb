@@ -1,0 +1,7 @@
+<h1>all teh animus</h1>
+
+<%= link_to 'New animu', new_anime_path %>
+
+<% @animes.each do |anime| %>
+    <h3><%= anime.title %></h3>
+<% end %>

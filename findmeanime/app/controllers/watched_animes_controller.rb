@@ -1,0 +1,2 @@
+class WatchedAnimesController < ApplicationController
+end

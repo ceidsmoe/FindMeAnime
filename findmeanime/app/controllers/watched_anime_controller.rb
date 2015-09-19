@@ -1,2 +1,0 @@
-class WatchedAnimeController < ApplicationController
-end
