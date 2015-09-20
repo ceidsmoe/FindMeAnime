@@ -1,0 +1,10 @@
+<%= form_for(@watched_anime) do |f| %>
+    <p>
+        <%= f.label :rank %>
+        <%= f.number_field :rank %>
+    </p>
+
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

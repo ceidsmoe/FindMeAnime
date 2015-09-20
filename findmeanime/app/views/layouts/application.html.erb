@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Findmeanime</title>
+  <title>FindMeAnime</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -28,13 +28,15 @@
                            <li><%= link_to 'Sign out', signout_path %></li>
                         </ul>
                     <% else %>
-                        <ul class="navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
                            <li><%= link_to 'Sign in', '/signet/google/auth' %></li>
                         </ul>
                     <% end %>                        
                 </div><!--/.navbar-collapse -->
             </div>
         </div>
+
+<%= yield %>
 
 </body>
 </html>

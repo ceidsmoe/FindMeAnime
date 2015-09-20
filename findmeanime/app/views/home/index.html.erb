@@ -1,7 +1,9 @@
-<h1>Find Me Anime!</h1>
+<br>
 
 <% if logged_in? %>
-    
+
+    <h2><%= @anime.title %></h2>
+    <%= link_to "Down", new_anime_watched_anime_path(@anime, "down") %>
 
 <% else %>
     <h2>Log in to start </h2>

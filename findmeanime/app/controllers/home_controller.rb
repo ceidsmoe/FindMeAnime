@@ -8,7 +8,8 @@ class HomeController < ApplicationController
         client.authorization = auth
 
         @my_suggestions = get_suggestions(current_user)
-        @suggestion = @my_suggestions[0]
+        @anime = @my_suggestions[0]
+        @watched_anime = current_user.watched_animes
 
     end
   end
