@@ -7,7 +7,9 @@ class HomeController < ApplicationController
         client = Google::APIClient.new
         client.authorization = auth
 
-        my_suggestions = get_suggestions(current_user)
+        @my_suggestions = get_suggestions(current_user)
+        @suggestion = @my_suggestions[0]
+
     end
   end
 end

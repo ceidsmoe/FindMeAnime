@@ -1,4 +1,10 @@
 <h1>Find Me Anime!</h1>
 
+<% if logged_in? %>
+    
+
+<% else %>
+    <h2>Log in to start </h2>
+<% end %>
 
 <%= link_to 'All Anime', animes_path %>

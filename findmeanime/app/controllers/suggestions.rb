@@ -6,8 +6,8 @@ def get_suggestions(user)
   shows = weed_irrelevant(Anime.all, user.watched_animes);
   shows = weed_seen(shows, user.watched_animes);
   if(shows.empty? or user.watched_animes.empty?)
-    return Anime.all
-    #return sort_shows_by_rank(Anime.all);
+    #return Anime.all
+    return sort_shows_by_rank(Anime.all);
   end
   
   shows = make_twod(shows)

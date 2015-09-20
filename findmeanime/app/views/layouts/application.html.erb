@@ -2,20 +2,39 @@
 <html>
 <head>
   <title>Findmeanime</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<% if logged_in? %>
-    <h1>Logged in</h1>
-    <p><%= link_to 'Sign out', signout_path %></p>
-<% else %>
-    <%= link_to 'Sign in', '/signet/google/auth' %>
-<% end %>
+<div class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle btn" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="glyphicon glyphicon-chevron-down white"></span>
 
-<%= yield %>
+                    </button>
+                    <a class="navbar-brand" href="/">FindMeAnime</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                    </ul>
+
+                    <% if logged_in? %>
+                        <ul class="nav navbar-nav navbar-right">
+                           <li><%= link_to 'Sign out', signout_path %></li>
+                        </ul>
+                    <% else %>
+                        <ul class="navbar-right">
+                           <li><%= link_to 'Sign in', signin_path %></li>
+                        </ul>
+                    <% end %>                        
+                </div><!--/.navbar-collapse -->
+            </div>
+        </div>
 
 </body>
 </html>
